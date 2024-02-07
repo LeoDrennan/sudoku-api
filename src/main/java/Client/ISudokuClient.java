@@ -1,5 +1,5 @@
 package Client;
 
 public interface ISudokuClient {
-    int getUnsolved();
+    int[][] getUnsolved();
 }

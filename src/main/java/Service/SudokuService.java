@@ -5,6 +5,10 @@ import Solver.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+
 @Service
 public class SudokuService implements ISudokuService {
 
@@ -24,8 +28,7 @@ public class SudokuService implements ISudokuService {
         return board.board;
     }
 
-    public int getUnsolved() {
-
+    public int[][] getUnsolved() {
         return sudokuClient.getUnsolved();
     }
 }

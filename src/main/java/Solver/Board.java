@@ -1,8 +1,5 @@
 package Solver;
 
-import Solver.RowValidator;
-import Solver.Validator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -11,20 +8,6 @@ public class Board extends Validator {
 
     public Board(int[][] board) {
         this.board = board;
-    }
-
-    public void Show(){
-        for (int[] row : board) {
-            for (int cell : row) {
-                if (cell == 0) {
-                    System.out.print(". ");
-                } else {
-                    System.out.print(cell + " ");
-                }
-            }
-            System.out.print("\n");
-        }
-        System.out.print("\n");
     }
 
     public boolean Validate() {
