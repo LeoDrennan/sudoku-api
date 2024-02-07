@@ -3,6 +3,7 @@ package Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Component
 public class SudokuClient implements ISudokuClient {
@@ -14,17 +15,11 @@ public class SudokuClient implements ISudokuClient {
     }
 
     // TODO: Hook this up to consume "https://sudoku-api.vercel.app/api/dosuku"
-    public int[][] getUnsolved() {
-        return new int[][] {
-                {0, 0, 0, 6, 0, 0, 2, 0, 0},
-                {0, 0, 0, 0, 0, 9, 0, 6, 0},
-                {0, 8, 0, 0, 0, 5, 0, 0, 3},
-                {1, 0, 0, 4, 0, 0, 9, 0, 0},
-                {8, 3, 0, 0, 0, 0, 0, 0, 0},
-                {0, 2, 0, 0, 0, 6, 0, 0, 0},
-                {0, 0, 0, 0, 6, 0, 0, 0, 0},
-                {2, 5, 0, 3, 0, 7, 0, 9, 0},
-                {0, 0, 1, 0, 0, 0, 0, 8, 4}
-        };
+    public Mono<int[][]> getUnsolved() {
+        Mono<Response> response = webClient.get()
+                .retrieve()
+                .bodyToMono(Response.class);
+
+        return response.map(Response::toBoard);
     }
 }

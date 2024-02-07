@@ -1,9 +1,8 @@
 package Service;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
+import reactor.core.publisher.Mono;
 
 public interface ISudokuService {
-    int[][] getUnsolved();
+    Mono<int[][]> getUnsolved();
     int[][] solveBoard(int[][] request);
 }

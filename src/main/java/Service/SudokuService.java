@@ -1,21 +1,18 @@
 package Service;
 
-import Client.SudokuClient;
+import Client.ISudokuClient;
 import Solver.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
+import reactor.core.publisher.Mono;
 
 @Service
 public class SudokuService implements ISudokuService {
 
-    private final SudokuClient sudokuClient;
+    private final ISudokuClient sudokuClient;
 
     @Autowired
-    public SudokuService(SudokuClient sudokuClient) {
+    public SudokuService(ISudokuClient sudokuClient) {
         this.sudokuClient = sudokuClient;
     }
 
@@ -28,7 +25,7 @@ public class SudokuService implements ISudokuService {
         return board.board;
     }
 
-    public int[][] getUnsolved() {
+    public Mono<int[][]> getUnsolved() {
         return sudokuClient.getUnsolved();
     }
 }

@@ -1,5 +1,7 @@
 package Client;
 
+import reactor.core.publisher.Mono;
+
 public interface ISudokuClient {
-    int[][] getUnsolved();
+    Mono<int[][]> getUnsolved();
 }
